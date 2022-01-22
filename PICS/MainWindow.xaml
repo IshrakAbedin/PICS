@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="500*"/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
-            <materialDesign:Card x:Name="Card_CameraControlHousing" Grid.Column="0" Margin="10" Padding="10" Background="Black">
+            <materialDesign:Card x:Name="Card_CameraControlHousing" Grid.Column="0" Margin="10" Padding="10">
                 <webEye:WebCameraControl x:Name="CameraControl" VerticalAlignment="Center" HorizontalAlignment="Center"
                                          MaxWidth="4000" MaxHeight="3000"/>
             </materialDesign:Card>
@@ -95,10 +95,17 @@
                                 </DockPanel>
                             </materialDesign:Chip>
 
-                            <GroupBox Header="Experiment Detail" Margin="0" Grid.Row="1">
+                            <GroupBox Margin="0" Grid.Row="1">
+                                <GroupBox.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="0">
+                                        <Label Content="Experiment Details"/>
+                                        <materialDesign:PackIcon x:Name="Icon_DoneCheck" Kind="StickerCheck" VerticalAlignment="Center"
+                                                                 Height="20" Width="20" Visibility="Hidden"/>
+                                    </StackPanel>
+                                </GroupBox.Header>
                                 <ScrollViewer Margin="0" VerticalScrollBarVisibility="Auto">
                                     <TextBlock x:Name="TextBlock_ExperimentContent" Margin="0" TextWrapping="Wrap" FontFamily="Consolas">
-                                    Experiment Detail ...
+                                        Experiment Detail ...
                                     </TextBlock>
                                 </ScrollViewer>
                             </GroupBox>
@@ -148,14 +155,16 @@
                             IsEnabled="{Binding CamControlsEnabled}" Click="Button_CameraStart_Click">
                                 <materialDesign:PackIcon Kind="Play" Height="20" Width="20"/>
                             </Button>
-                            <Button
-                            x:Name="Button_CameraCapture" Margin="5"
-                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                            Height="30" Width="30"
-                            ToolTip="Capture"
-                            IsEnabled="{Binding CamControlsEnabled}" Click="Button_CameraCapture_Click">
-                                <materialDesign:PackIcon Kind="Camera" Height="20" Width="20"/>
-                            </Button>
+                            <materialDesign:Badged x:Name="Badge_Iteration" Badge="3">
+                                <Button
+                                x:Name="Button_CameraCapture" Margin="5"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                Height="30" Width="30"
+                                ToolTip="Capture"
+                                IsEnabled="{Binding CamControlsEnabled}" Click="Button_CameraCapture_Click">
+                                    <materialDesign:PackIcon Kind="Camera" Height="20" Width="20"/>
+                                </Button>
+                            </materialDesign:Badged>
                         </DockPanel>
                     </materialDesign:Card>
                 </Grid>

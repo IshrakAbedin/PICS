@@ -26,6 +26,7 @@ namespace PICS
         public float ProgressValue => ((float)(CurrentExperimentIndex + 1)) / ExperimentCount * 100;
         public bool InFirstExperiment => CurrentExperimentIndex == 0;
         public bool InLastExperiment => CurrentExperimentIndex + 1 == ExperimentCount;
+        public bool IsCurrentOneDone => DoneList[CurrentExperimentIndex];
 
         public ExperimentManager(string experimentDataPath)
         {
@@ -35,12 +36,22 @@ namespace PICS
             ExperimentCount = eData.ExperimentList.Count;
             IterationCount = eData.IterationCount;
             DoneList = new List<bool>(ExperimentCount);
+            for (int i = 0; i < ExperimentCount; i++)
+            {
+                DoneList.Add(false);
+            }
+            SaveDir = eData.SaveDir;
+
+            CurrentExperimentIndex = 0;
+            CurrentIterationCount = eData.IterationCount;
+        }
+
+        public void ResetExperiment()
+        {
             for (int i = 0; i < DoneList.Count; i++)
             {
                 DoneList[i] = false;
             }
-            SaveDir = eData.SaveDir;
-
             CurrentExperimentIndex = 0;
             CurrentIterationCount = eData.IterationCount;
         }
@@ -73,10 +84,32 @@ namespace PICS
             }
         }
 
-        public bool PerformOne()
+
+        // Returns true if all trials are completed
+        public bool CompleteSingleTrial()
         {
-            // TODO
-            return false;
+            if (CurrentIterationCount > 0)
+            {
+                CurrentIterationCount--;
+                if (CurrentIterationCount == 0)
+                {
+                    DoneList[CurrentExperimentIndex] = true;
+                    if (InLastExperiment)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        CurrentIterationCount = IterationCount;
+                        CurrentExperimentIndex++;
+                    }
+                }
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private string GetStringFromExperimentDetail(ExperimentDetail experimentDetail)

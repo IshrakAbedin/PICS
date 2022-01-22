@@ -34,6 +34,7 @@ namespace PICS
             this.DataContext = DCX;
             UpdateExperimentDetail();
             UpdateCameraList();
+            UpdateBadge();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -65,14 +66,14 @@ namespace PICS
 
         private void Button_ExpLeft_Click(object sender, RoutedEventArgs e)
         {
-            ExpMananger.PreviousExperiment();
-            UpdateExperimentDetail(); 
+            _ = ExpMananger.PreviousExperiment();
+            UpdateExperimentControls();
         }
 
         private void Button_ExpRight_Click(object sender, RoutedEventArgs e)
         {
-            ExpMananger.NextExperiment();
-            UpdateExperimentDetail();
+            _ = ExpMananger.NextExperiment();
+            UpdateExperimentControls();
         }
 
         private void Button_CameraStop_Click(object sender, RoutedEventArgs e)
@@ -88,7 +89,7 @@ namespace PICS
 
         private void Button_CameraCapture_Click(object sender, RoutedEventArgs e)
         {
-            CameraCaptureRoutine();
+            SingleTrialRoutine();
         }
 
         private void ClearUserInputs()
@@ -132,6 +133,23 @@ namespace PICS
             ProgressBar_ExpProgress.Value = ExpMananger.ProgressValue;
             Button_ExpLeft.IsEnabled = !ExpMananger.InFirstExperiment;
             Button_ExpRight.IsEnabled = !ExpMananger.InLastExperiment;
+        }
+
+        private void UpdateBadge()
+        {
+            Badge_Iteration.Badge = ExpMananger.CurrentIterationCount;
+        }
+
+        private void UpdateCheckIcon()
+        {
+            Icon_DoneCheck.Visibility = ExpMananger.IsCurrentOneDone ? Visibility.Visible : Visibility.Hidden;
+        }
+
+        private void UpdateExperimentControls()
+        {
+            UpdateExperimentDetail();
+            UpdateBadge();
+            UpdateCheckIcon();
         }
 
         private void UpdateCameraList()
@@ -186,13 +204,25 @@ namespace PICS
                 System.Drawing.Bitmap currentImage = CameraControl.GetCurrentImage();
                 string savePath = GetFinalSavePath();
                 currentImage.Save(savePath);
-                ShowPopupMessage($"Image is saved at {savePath}");
+                //ShowPopupMessage($"Image is saved at {savePath}");
                 currentImage.Dispose();
             }
             else
             {
                 ShowPopupMessage("Select and start a camera first!");
             }
+        }
+
+        private void SingleTrialRoutine()
+        {
+            CameraCaptureRoutine();
+            bool completed = ExpMananger.CompleteSingleTrial();
+            if(completed)
+            {
+                ShowPopupMessage("Thank you, the experiment is completed.");
+                ExpMananger.ResetExperiment();
+            }
+            UpdateExperimentControls();
         }
 
         private string GetFinalSavePath()
