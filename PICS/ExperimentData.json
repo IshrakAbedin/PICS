@@ -1,6 +1,6 @@
 {
   "IterationCount": 5,
-  "SaveDir": "G:\\REPOS\\PICSExperimentCreator\\PICSExperimentCreator\\Data\\",
+  "SaveDir": "./Data/",
   "ExperimentList": [
     {
       "Lighting Condition": "Dark",
