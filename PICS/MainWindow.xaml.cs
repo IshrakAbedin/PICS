@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WebEye.Controls.Wpf;
 
 namespace PICS
@@ -30,11 +19,37 @@ namespace PICS
         {
             DCX = new PicsDataContext();
             ExpMananger = new ExperimentManager(ExperimentDataPath);
+
             InitializeComponent();
+
+            this.KeyDown += new KeyEventHandler(OnKeyboardDown);
             this.DataContext = DCX;
-            UpdateExperimentDetail();
             UpdateCameraList();
-            UpdateBadge();
+            UpdateExperimentControls();
+        }
+
+        private void OnKeyboardDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.F1:
+                    DisplayHelp();
+                    break;
+                case Key.F3:
+                    ResetAll();
+                    break;
+                case Key.F9:
+                    SingleTrialRoutine();
+                    break;
+                case Key.F11:
+                    PreviousExperimentRoutine();
+                    break;
+                case Key.F12:
+                    NextExperimentRoutine();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -45,7 +60,7 @@ namespace PICS
         private void Button_Accept_Click(object sender, RoutedEventArgs e)
         {
             string tag = GetSanitizedFolderTag();
-            if(tag != null)
+            if (tag != null)
             {
                 DCX.FolderTag = tag;
                 DCX.CamControlsEnabled = true;
@@ -66,14 +81,12 @@ namespace PICS
 
         private void Button_ExpLeft_Click(object sender, RoutedEventArgs e)
         {
-            _ = ExpMananger.PreviousExperiment();
-            UpdateExperimentControls();
+            PreviousExperimentRoutine();
         }
 
         private void Button_ExpRight_Click(object sender, RoutedEventArgs e)
         {
-            _ = ExpMananger.NextExperiment();
-            UpdateExperimentControls();
+            NextExperimentRoutine();
         }
 
         private void Button_CameraStop_Click(object sender, RoutedEventArgs e)
@@ -99,17 +112,27 @@ namespace PICS
             ComboBox_Age.SelectedIndex = -1;
         }
 
+        private void ResetAll()
+        {
+            DCX.FolderTag = null;
+            DCX.CamControlsEnabled = false;
+            ClearUserInputs();
+            ExpMananger.ResetExperiment();
+            UpdateExperimentControls();
+            CameraStopRoutine();
+        }
+
         private string GetSanitizedFolderTag()
         {
-            if(TextBox_Name.Text.Length == 0)
+            if (TextBox_Name.Text.Length == 0)
             {
                 ShowPopupMessage("[Name] cannot be empty!");
             }
-            else if(ComboBox_Gender.SelectedIndex == -1)
+            else if (ComboBox_Gender.SelectedIndex == -1)
             {
                 ShowPopupMessage("[Gender] must be selected!");
             }
-            else if(ComboBox_Age.SelectedIndex == -1)
+            else if (ComboBox_Age.SelectedIndex == -1)
             {
                 ShowPopupMessage("[Age] must be selected!");
             }
@@ -178,15 +201,29 @@ namespace PICS
 
         }
 
+        private void PreviousExperimentRoutine()
+        {
+            _ = ExpMananger.PreviousExperiment();
+            UpdateExperimentControls();
+        }
+
+        private void NextExperimentRoutine()
+        {
+            _ = ExpMananger.NextExperiment();
+            UpdateExperimentControls();
+        }
+
         private void CameraStopRoutine()
         {
             UpdateCameraList();
             CameraControl.StopCapture();
+            CameraControl.Visibility = Visibility.Hidden;
+            Icon_Camera.Visibility = Visibility.Visible;
         }
 
         private void CameraStartRoutine()
         {
-            if(ComboBox_Camera.SelectedIndex == -1)
+            if (ComboBox_Camera.SelectedIndex == -1)
             {
                 ShowPopupMessage("Select a valid camera first");
                 UpdateCameraList();
@@ -194,12 +231,14 @@ namespace PICS
             else
             {
                 CameraControl.StartCapture(CameraIDs[ComboBox_Camera.SelectedIndex]);
+                CameraControl.Visibility = Visibility.Visible;
+                Icon_Camera.Visibility = Visibility.Hidden;
             }
         }
 
         private void CameraCaptureRoutine()
         {
-            if(CameraControl.IsCapturing)
+            if (CameraControl.IsCapturing)
             {
                 System.Drawing.Bitmap currentImage = CameraControl.GetCurrentImage();
                 string savePath = GetFinalSavePath();
@@ -216,13 +255,16 @@ namespace PICS
         private void SingleTrialRoutine()
         {
             CameraCaptureRoutine();
-            bool completed = ExpMananger.CompleteSingleTrial();
-            if(completed)
+            if (CameraControl.IsCapturing)
             {
-                ShowPopupMessage("Thank you, the experiment is completed.");
-                ExpMananger.ResetExperiment();
+                bool completed = ExpMananger.CompleteSingleTrial();
+                if (completed)
+                {
+                    ShowPopupMessage("Thank you, the experiment is completed.");
+                    ResetAll();
+                }
+                UpdateExperimentControls();
             }
-            UpdateExperimentControls();
         }
 
         private string GetFinalSavePath()
@@ -235,6 +277,19 @@ namespace PICS
             PathUtility.CreateDirectoryIfDoesNotExist(finalDir);
             string finalPath = System.IO.Path.Combine(baseDir, userDir, cameraDir, saveTag);
             return finalPath;
+        }
+
+        private void DisplayHelp()
+        {
+            string helpString =
+                "Written by Mohammad Ishrak Abedin, 2022.\n\n" +
+                "Keyboard Shortcuts:\n\n" +
+                "- F1: Help\n" +
+                "- F3: Reset\n" +
+                "- F9: Capture\n" +
+                "- F11: Previous Experiment\n" +
+                "- F12: Next Experiment";
+            ShowPopupMessage(helpString);
         }
     }
 }

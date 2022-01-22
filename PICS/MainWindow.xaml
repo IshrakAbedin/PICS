@@ -14,7 +14,8 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="[PICS] Parametric Image Collection System" Height="600" Width="900" SizeChanged="Window_SizeChanged">
+        Title="[PICS] Parametric Image Collection System" 
+        Height="600" Width="900" MinHeight="370" MinWidth="600" SizeChanged="Window_SizeChanged">
     <materialDesign:DialogHost x:Name="DialogueHost_PopupLog" IsOpen="False">
         <materialDesign:DialogHost.DialogContent>
             <materialDesign:Card VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="500" MaxHeight="400">
@@ -37,8 +38,11 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <materialDesign:Card x:Name="Card_CameraControlHousing" Grid.Column="0" Margin="10" Padding="10">
-                <webEye:WebCameraControl x:Name="CameraControl" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                         MaxWidth="4000" MaxHeight="3000"/>
+                <Grid>
+                    <materialDesign:PackIcon x:Name="Icon_Camera" Kind="Camera" Width="200" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <webEye:WebCameraControl x:Name="CameraControl" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                             MaxWidth="4000" MaxHeight="3000" Visibility="Hidden"/>
+                </Grid>
             </materialDesign:Card>
             <materialDesign:Card Grid.Column="1" Margin="10" Padding="10">
                 <Grid Margin="0">
