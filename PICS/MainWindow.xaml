@@ -15,7 +15,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="[PICS] Parametric Image Collection System" 
-        Height="600" Width="900" MinHeight="370" MinWidth="600" SizeChanged="Window_SizeChanged">
+        Height="600" Width="900" MinHeight="370" MinWidth="600" SizeChanged="Window_SizeChanged" Icon="Resources/PICSIcon.ico">
     <materialDesign:DialogHost x:Name="DialogueHost_PopupLog" IsOpen="False">
         <materialDesign:DialogHost.DialogContent>
             <materialDesign:Card VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="500" MaxHeight="400">
