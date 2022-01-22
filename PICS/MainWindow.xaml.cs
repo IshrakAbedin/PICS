@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebEye.Controls.Wpf;
 
 namespace PICS
 {
@@ -23,6 +24,7 @@ namespace PICS
         public const string ExperimentDataPath = "./ExperimentData.json";
         public PicsDataContext DCX;
         public ExperimentManager ExpMananger;
+        public List<WebCameraId> CameraIDs;
 
         public MainWindow()
         {
@@ -31,6 +33,12 @@ namespace PICS
             InitializeComponent();
             this.DataContext = DCX;
             UpdateExperimentDetail();
+            UpdateCameraList();
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            UpdateCameraControlRatio();
         }
 
         private void Button_Accept_Click(object sender, RoutedEventArgs e)
@@ -65,6 +73,22 @@ namespace PICS
         {
             ExpMananger.NextExperiment();
             UpdateExperimentDetail();
+        }
+
+        private void Button_CameraStop_Click(object sender, RoutedEventArgs e)
+        {
+            CameraStopRoutine();
+        }
+
+        private void Button_CameraStart_Click(object sender, RoutedEventArgs e)
+        {
+            CameraStartRoutine();
+            UpdateCameraControlRatio();
+        }
+
+        private void Button_CameraCapture_Click(object sender, RoutedEventArgs e)
+        {
+            CameraCaptureRoutine();
         }
 
         private void ClearUserInputs()
@@ -108,6 +132,79 @@ namespace PICS
             ProgressBar_ExpProgress.Value = ExpMananger.ProgressValue;
             Button_ExpLeft.IsEnabled = !ExpMananger.InFirstExperiment;
             Button_ExpRight.IsEnabled = !ExpMananger.InLastExperiment;
+        }
+
+        private void UpdateCameraList()
+        {
+            DCX.CameraDevices.Clear();
+            CameraIDs = new List<WebCameraId>(CameraControl.GetVideoCaptureDevices());
+            foreach (WebCameraId camera in CameraIDs)
+            {
+                DCX.CameraDevices.Add(camera.Name);
+            }
+        }
+
+        private void UpdateCameraControlRatio()
+        {
+            double Ratio;
+            if (CameraControl.IsCapturing)
+            {
+                Ratio = ((double)CameraControl.VideoSize.Height) / CameraControl.VideoSize.Width;
+                CameraControl.Height = CameraControl.ActualWidth * Ratio;
+            }
+            else
+            {
+                CameraControl.Width = Card_CameraControlHousing.Width;
+                CameraControl.Height = Card_CameraControlHousing.Height;
+            }
+
+        }
+
+        private void CameraStopRoutine()
+        {
+            UpdateCameraList();
+            CameraControl.StopCapture();
+        }
+
+        private void CameraStartRoutine()
+        {
+            if(ComboBox_Camera.SelectedIndex == -1)
+            {
+                ShowPopupMessage("Select a valid camera first");
+                UpdateCameraList();
+            }
+            else
+            {
+                CameraControl.StartCapture(CameraIDs[ComboBox_Camera.SelectedIndex]);
+            }
+        }
+
+        private void CameraCaptureRoutine()
+        {
+            if(CameraControl.IsCapturing)
+            {
+                System.Drawing.Bitmap currentImage = CameraControl.GetCurrentImage();
+                string savePath = GetFinalSavePath();
+                currentImage.Save(savePath);
+                ShowPopupMessage($"Image is saved at {savePath}");
+                currentImage.Dispose();
+            }
+            else
+            {
+                ShowPopupMessage("Select and start a camera first!");
+            }
+        }
+
+        private string GetFinalSavePath()
+        {
+            string baseDir = ExpMananger.SaveDir;
+            string userDir = DCX.FolderTag;
+            string cameraDir = ComboBox_Camera.SelectedItem.ToString();
+            string saveTag = $"{ExpMananger.CurrentExperimentSaveTag}_{ExpMananger.CurrentIterationCount}.png";
+            string finalDir = System.IO.Path.Combine(baseDir, userDir, cameraDir);
+            PathUtility.CreateDirectoryIfDoesNotExist(finalDir);
+            string finalPath = System.IO.Path.Combine(baseDir, userDir, cameraDir, saveTag);
+            return finalPath;
         }
     }
 }

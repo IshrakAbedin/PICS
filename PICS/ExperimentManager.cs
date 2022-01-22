@@ -21,6 +21,7 @@ namespace PICS
         public int CurrentIterationCount { get; private set; }
 
         public string CurrentExperimentInfo => GetStringFromExperimentDetail(eData.ExperimentList[CurrentExperimentIndex]);
+        public string CurrentExperimentSaveTag => eData.ExperimentList[CurrentExperimentIndex]["Save Tag"].ToString();
         public string ProgressString => $"{CurrentExperimentIndex + 1} / {ExperimentCount}";
         public float ProgressValue => ((float)(CurrentExperimentIndex + 1)) / ExperimentCount * 100;
         public bool InFirstExperiment => CurrentExperimentIndex == 0;

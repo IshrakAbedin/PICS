@@ -12,6 +12,7 @@ namespace PICS
     {
         public Collection<string> GenderList { get; set; }
         public Collection<int> AgeList { get; set; }
+        public Collection<string> CameraDevices { get; set; }
 
         private string folderTag;
         public string FolderTag
@@ -57,11 +58,15 @@ namespace PICS
         public PicsDataContext()
         {
             GenderList = new Collection<string> { "Male", "Female", "Other" };
+            
             AgeList = new Collection<int>();
             for (int i = 1; i < 101; i++)
             {
                 AgeList.Add(i);
             }
+
+            CameraDevices = new Collection<string>();
+
             FolderTag = null;
             CamControlsEnabled = false;
         }

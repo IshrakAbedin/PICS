@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PICS"
         mc:Ignorable="d"
+        xmlns:webEye="clr-namespace:WebEye.Controls.Wpf;assembly=WebEye.Controls.Wpf.WebCameraControl"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -13,7 +14,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="[PICS] Parametric Image Collection System" Height="600" Width="900">
+        Title="[PICS] Parametric Image Collection System" Height="600" Width="900" SizeChanged="Window_SizeChanged">
     <materialDesign:DialogHost x:Name="DialogueHost_PopupLog" IsOpen="False">
         <materialDesign:DialogHost.DialogContent>
             <materialDesign:Card VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="500" MaxHeight="400">
@@ -35,8 +36,9 @@
                 <ColumnDefinition Width="500*"/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
-            <materialDesign:Card Grid.Column="0" Margin="10" Padding="10" Background="Black">
-
+            <materialDesign:Card x:Name="Card_CameraControlHousing" Grid.Column="0" Margin="10" Padding="10" Background="Black">
+                <webEye:WebCameraControl x:Name="CameraControl" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                         MaxWidth="4000" MaxHeight="3000"/>
             </materialDesign:Card>
             <materialDesign:Card Grid.Column="1" Margin="10" Padding="10">
                 <Grid Margin="0">
@@ -96,12 +98,7 @@
                             <GroupBox Header="Experiment Detail" Margin="0" Grid.Row="1">
                                 <ScrollViewer Margin="0" VerticalScrollBarVisibility="Auto">
                                     <TextBlock x:Name="TextBlock_ExperimentContent" Margin="0" TextWrapping="Wrap" FontFamily="Consolas">
-                                    Lorep ipsom7
-                                    But is it boring? I do not know. THis is kinda werid. snfdfkasnfnajsfajsfnsaklfnkalsfnlaksf
-                                    sajfklsafjsalkfaslkf af aslkfhaskfhakllsfh asfskafh lk sfanfnasfns asfnsakn fklas nsafnnk asl
-                                    snanfksnfkasnfksanfjsa nfsafksafnsakfnklasf fsafn asfn kasnfndsakfn laskfn
-                                    ndsaknfklsanfklasnf asfnsakfnkasnf kas fnanksfnlasf
-                                    fnasnfa,sfn
+                                    Experiment Detail ...
                                     </TextBlock>
                                 </ScrollViewer>
                             </GroupBox>
@@ -132,43 +129,32 @@
                     <materialDesign:Card Grid.Row="2" Margin="5">
                         <DockPanel>
                             <ComboBox x:Name="ComboBox_Camera" materialDesign:HintAssist.Hint="Camera"
-                                  Width="120" Margin="5,0"
+                                  Width="120" Margin="5,0" ItemsSource="{Binding CameraDevices}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                <ComboBoxItem Content="1" />
-                                <ComboBoxItem Content="2" />
                             </ComboBox>
                             <Button
                             x:Name="Button_CameraStop" Margin="5 0"
                             Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}"
                             Height="30" Width="30"
                             ToolTip="Stop Camera"
-                            IsEnabled="{Binding CamControlsEnabled}">
-                                <materialDesign:PackIcon
-                                Kind="Stop"
-                                Height="20"
-                                Width="20" />
+                            IsEnabled="{Binding CamControlsEnabled}" Click="Button_CameraStop_Click">
+                                <materialDesign:PackIcon Kind="Stop" Height="20" Width="20"/>
                             </Button>
                             <Button
                             x:Name="Button_CameraStart" Margin="5 0"
                             Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                             Height="30" Width="30"
                             ToolTip="Start Camera"
-                            IsEnabled="{Binding CamControlsEnabled}">
-                                <materialDesign:PackIcon
-                                Kind="Play"
-                                Height="20"
-                                Width="20" />
+                            IsEnabled="{Binding CamControlsEnabled}" Click="Button_CameraStart_Click">
+                                <materialDesign:PackIcon Kind="Play" Height="20" Width="20"/>
                             </Button>
                             <Button
                             x:Name="Button_CameraCapture" Margin="5"
                             Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                             Height="30" Width="30"
                             ToolTip="Capture"
-                            IsEnabled="{Binding CamControlsEnabled}">
-                                <materialDesign:PackIcon
-                                Kind="Camera"
-                                Height="20"
-                                Width="20" />
+                            IsEnabled="{Binding CamControlsEnabled}" Click="Button_CameraCapture_Click">
+                                <materialDesign:PackIcon Kind="Camera" Height="20" Width="20"/>
                             </Button>
                         </DockPanel>
                     </materialDesign:Card>
