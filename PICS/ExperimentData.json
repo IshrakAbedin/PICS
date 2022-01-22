@@ -1,0 +1,870 @@
+{
+  "IterationCount": 5,
+  "SaveDir": "./Data/",
+  "ExperimentList": [
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_LDN\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_LDNZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_LDN-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_LDM\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_LDMZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_LDM-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_LDF\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_LDFZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_LDF-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_LBN\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_LBNZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_LBN-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_LBM\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_LBMZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_LBM-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_LBF\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_LBFZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_LBF-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_LDN\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_LDNZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_LDN-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_LDM\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_LDMZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_LDM-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_LDF\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_LDFZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_LDF-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_LBN\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_LBNZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_LBN-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_LBM\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_LBMZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_LBM-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_LBF\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_LBFZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_LBF-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_LDN\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_LDNZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_LDN-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_LDM\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_LDMZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_LDM-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_LDF\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_LDFZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_LDF-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_LBN\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_LBNZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_LBN-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_LBM\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_LBMZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_LBM-45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_LBF\u002B45"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_LBFZero"
+    },
+    {
+      "Hand": "Left",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_LBF-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_RDN\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_RDNZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_RDN-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_RDM\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_RDMZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_RDM-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_RDF\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_RDFZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_RDF-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_RBN\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_RBNZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_RBN-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_RBM\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_RBMZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_RBM-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Home_RBF\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Home_RBFZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Home",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Home_RBF-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_RDN\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_RDNZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_RDN-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_RDM\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_RDMZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_RDM-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_RDF\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_RDFZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_RDF-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_RBN\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_RBNZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_RBN-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_RBM\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_RBMZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_RBM-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Middle_RBF\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Middle_RBFZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Middle",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Middle_RBF-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_RDN\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_RDNZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_RDN-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_RDM\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_RDMZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_RDM-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_RDF\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_RDFZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Dark",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_RDF-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_RBN\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_RBNZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Near",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_RBN-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_RBM\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_RBMZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Medium",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_RBM-45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "\u002B45",
+      "Save Tag": "Action_RBF\u002B45"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "Zero",
+      "Save Tag": "Action_RBFZero"
+    },
+    {
+      "Hand": "Right",
+      "Gesture Type": "Action",
+      "Lighting Condition": "Bright",
+      "Distance (cm)": "Far",
+      "Perspective (deg)": "-45",
+      "Save Tag": "Action_RBF-45"
+    }
+  ]
+}
