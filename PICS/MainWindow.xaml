@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PICS"
         mc:Ignorable="d"
-        xmlns:webEye="clr-namespace:WebEye.Controls.Wpf;assembly=WebEye.Controls.Wpf.WebCameraControl"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -15,7 +14,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="[PICS] Parametric Image Collection System" 
-        Height="600" Width="900" MinHeight="370" MinWidth="600" SizeChanged="Window_SizeChanged" Icon="Resources/PICSIcon.ico">
+        Height="600" Width="900" MinHeight="370" MinWidth="600" Closing="Window_Closing" Icon="Resources/PICSIcon.ico">
     <materialDesign:DialogHost x:Name="DialogueHost_PopupLog" IsOpen="False">
         <materialDesign:DialogHost.DialogContent>
             <materialDesign:Card VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="500" MaxHeight="400">
@@ -40,8 +39,16 @@
             <materialDesign:Card x:Name="Card_CameraControlHousing" Grid.Column="0" Margin="10" Padding="10">
                 <Grid>
                     <materialDesign:PackIcon x:Name="Icon_Camera" Kind="Camera" Width="200" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <webEye:WebCameraControl x:Name="CameraControl" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                             MaxWidth="4000" MaxHeight="3000" Visibility="Hidden"/>
+                    <Image x:Name="CameraControl" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform x:Name="ScaleTransform_CameraControl" ScaleY="1" ScaleX="-1"/>
+                                <SkewTransform AngleY="0" AngleX="0"/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
                 </Grid>
             </materialDesign:Card>
             <materialDesign:Card Grid.Column="1" Margin="10" Padding="10">

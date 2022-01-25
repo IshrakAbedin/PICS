@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using AForge.Video;
+using System;
+using System.Drawing;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using WebEye.Controls.Wpf;
+using System.Windows.Media.Imaging;
 
 namespace PICS
 {
@@ -13,7 +16,10 @@ namespace PICS
         public const string ExperimentDataPath = "./ExperimentData.json";
         public PicsDataContext DCX;
         public ExperimentManager ExpMananger;
-        public List<WebCameraId> CameraIDs;
+
+        private readonly CameraFacade Camera;
+        private bool captureFlag = false;
+        private string savePath = "";
 
         public MainWindow()
         {
@@ -22,10 +28,43 @@ namespace PICS
 
             InitializeComponent();
 
+            Camera = new CameraFacade(new NewFrameEventHandler(Video_NewFrame));
+
             this.KeyDown += new KeyEventHandler(OnKeyboardDown);
             this.DataContext = DCX;
             UpdateCameraList();
             UpdateExperimentControls();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Camera.StopCapturing();
+        }
+
+        private void Video_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            try
+            {
+                BitmapImage bi;
+                using (Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone())
+                {
+                    bi = bitmap.ToBitmapImage();
+                    if (captureFlag)
+                    {
+                        captureFlag = false;
+                        bitmap.Save(savePath);
+                    }
+                }
+                bi.Freeze(); // avoid cross thread operations and prevents leaks
+                _ = Dispatcher.BeginInvoke(new ThreadStart(delegate { CameraControl.Source = bi; }));
+            }
+            catch (Exception exc)
+            {
+                //_ = MessageBox.Show("Error on _videoSource_NewFrame:\n" + exc.Message, "Error");
+                ShowPopupMessage("Error on _videoSource_NewFrame:\n" + exc.Message);
+                CameraStopRoutine();
+                Environment.Exit(1);
+            }
         }
 
         private void OnKeyboardDown(object sender, KeyEventArgs e)
@@ -37,6 +76,9 @@ namespace PICS
                     break;
                 case Key.F3:
                     ResetAll();
+                    break;
+                case Key.F5:
+                    FlipCameraView();
                     break;
                 case Key.F9:
                     SingleTrialRoutine();
@@ -50,11 +92,6 @@ namespace PICS
                 default:
                     break;
             }
-        }
-
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            UpdateCameraControlRatio();
         }
 
         private void Button_Accept_Click(object sender, RoutedEventArgs e)
@@ -97,7 +134,6 @@ namespace PICS
         private void Button_CameraStart_Click(object sender, RoutedEventArgs e)
         {
             CameraStartRoutine();
-            UpdateCameraControlRatio();
         }
 
         private void Button_CameraCapture_Click(object sender, RoutedEventArgs e)
@@ -178,27 +214,10 @@ namespace PICS
         private void UpdateCameraList()
         {
             DCX.CameraDevices.Clear();
-            CameraIDs = new List<WebCameraId>(CameraControl.GetVideoCaptureDevices());
-            foreach (WebCameraId camera in CameraIDs)
+            foreach (string cameraName in Camera.VideoDeviceNameList)
             {
-                DCX.CameraDevices.Add(camera.Name);
+                DCX.CameraDevices.Add(cameraName);
             }
-        }
-
-        private void UpdateCameraControlRatio()
-        {
-            double Ratio;
-            if (CameraControl.IsCapturing)
-            {
-                Ratio = ((double)CameraControl.VideoSize.Height) / CameraControl.VideoSize.Width;
-                CameraControl.Height = CameraControl.ActualWidth * Ratio;
-            }
-            else
-            {
-                CameraControl.Width = Card_CameraControlHousing.Width;
-                CameraControl.Height = Card_CameraControlHousing.Height;
-            }
-
         }
 
         private void PreviousExperimentRoutine()
@@ -216,7 +235,7 @@ namespace PICS
         private void CameraStopRoutine()
         {
             UpdateCameraList();
-            CameraControl.StopCapture();
+            Camera.StopCapturing();
             CameraControl.Visibility = Visibility.Hidden;
             Icon_Camera.Visibility = Visibility.Visible;
         }
@@ -230,7 +249,7 @@ namespace PICS
             }
             else
             {
-                CameraControl.StartCapture(CameraIDs[ComboBox_Camera.SelectedIndex]);
+                Camera.StartCapturing(ComboBox_Camera.SelectedIndex);
                 CameraControl.Visibility = Visibility.Visible;
                 Icon_Camera.Visibility = Visibility.Hidden;
             }
@@ -238,13 +257,11 @@ namespace PICS
 
         private void CameraCaptureRoutine()
         {
-            if (CameraControl.IsCapturing)
+            if (Camera.IsCapturing)
             {
-                System.Drawing.Bitmap currentImage = CameraControl.GetCurrentImage();
-                string savePath = GetFinalSavePath();
-                currentImage.Save(savePath);
+                savePath = GetFinalSavePath();
                 //ShowPopupMessage($"Image is saved at {savePath}");
-                currentImage.Dispose();
+                captureFlag = true;
             }
             else
             {
@@ -255,7 +272,7 @@ namespace PICS
         private void SingleTrialRoutine()
         {
             CameraCaptureRoutine();
-            if (CameraControl.IsCapturing)
+            if (Camera.IsCapturing)
             {
                 bool completed = ExpMananger.CompleteSingleTrial();
                 if (completed)
@@ -265,6 +282,11 @@ namespace PICS
                 }
                 UpdateExperimentControls();
             }
+        }
+
+        private void FlipCameraView()
+        {
+            ScaleTransform_CameraControl.ScaleX *= -1;
         }
 
         private string GetFinalSavePath()
@@ -286,6 +308,7 @@ namespace PICS
                 "Keyboard Shortcuts:\n\n" +
                 "- F1: Help\n" +
                 "- F3: Reset\n" +
+                "- F5: Flip Camera View\n" +
                 "- F9: Capture\n" +
                 "- F11: Previous Experiment\n" +
                 "- F12: Next Experiment";

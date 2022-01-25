@@ -10,7 +10,7 @@ The application is written in [.NET Framework 4.7.2](https://dotnet.microsoft.co
 
 ## *Libraries and  Dependencies*
 ---
-+ [WebEye.Controls.Wpf.WebCameraControl](https://www.nuget.org/packages/WebEye.Controls.Wpf.WebCameraControl/)
++ [AForge.Video.DirectShow](https://www.nuget.org/packages/AForge.Video.DirectShow/)
 + [System.Text.Json](https://www.nuget.org/packages/System.Text.Json/)
 + [Material Design In XAML Toolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)
 
