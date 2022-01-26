@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -46,15 +47,29 @@ namespace PICS
             try
             {
                 BitmapImage bi;
-                using (Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone())
+                Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+                bi = bitmap.ToBitmapImage();
+
+                if (captureFlag)
                 {
-                    bi = bitmap.ToBitmapImage();
-                    if (captureFlag)
-                    {
-                        captureFlag = false;
-                        bitmap.Save(savePath);
-                    }
+                    captureFlag = false;
+                    _ = Task.Run(() =>
+                      {
+                          try
+                          {
+                              bitmap.Save(savePath);
+                          }
+                          finally
+                          {
+                              bitmap.Dispose();
+                          }
+                      });
                 }
+                else
+                {
+                    bitmap.Dispose();
+                }
+
                 bi.Freeze(); // avoid cross thread operations and prevents leaks
                 _ = Dispatcher.BeginInvoke(new ThreadStart(delegate { CameraControl.Source = bi; }));
             }
