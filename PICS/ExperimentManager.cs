@@ -18,6 +18,7 @@ namespace PICS
         public int CurrentIterationCount { get; private set; }
 
         public string CurrentExperimentInfo => GetStringFromExperimentDetail(eData.ExperimentList[CurrentExperimentIndex]);
+        public List<PropertyValuePair> CurrentExperimentPVPList => GetPVPListFromExperimentDetail(eData.ExperimentList[CurrentExperimentIndex]);
         public string CurrentExperimentSaveTag => eData.ExperimentList[CurrentExperimentIndex]["Save Tag"].ToString();
         public string ProgressString => $"{CurrentExperimentIndex + 1} / {ExperimentCount}";
         public float ProgressValue => ((float)(CurrentExperimentIndex + 1)) / ExperimentCount * 100;
@@ -114,6 +115,16 @@ namespace PICS
             List<string> detailList = (from kvp in experimentDetail
                                        select $"{kvp.Key} : {kvp.Value}").ToList();
             return string.Join("\n", detailList);
+        }
+
+        private List<PropertyValuePair> GetPVPListFromExperimentDetail(ExperimentDetail experimentDetail)
+        {
+            List<PropertyValuePair> PVPList = new List<PropertyValuePair>();
+            foreach (KeyValuePair<string, string> kvp in experimentDetail)
+            {
+                PVPList.Add(new PropertyValuePair(kvp.Key, kvp.Value));
+            }
+            return PVPList;
         }
     }
 }

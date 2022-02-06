@@ -202,7 +202,7 @@ namespace PICS
 
         private void UpdateExperimentDetail()
         {
-            TextBlock_ExperimentContent.Text = ExpMananger.CurrentExperimentInfo;
+            DataGrid_ExpDetail.ItemsSource = ExpMananger.CurrentExperimentPVPList;
             Label_ExpProgress.Content = ExpMananger.ProgressString;
             ProgressBar_ExpProgress.Value = ExpMananger.ProgressValue;
             Button_ExpLeft.IsEnabled = !ExpMananger.InFirstExperiment;

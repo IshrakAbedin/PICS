@@ -114,11 +114,10 @@
                                                                  Height="20" Width="20" Visibility="Hidden"/>
                                     </StackPanel>
                                 </GroupBox.Header>
-                                <ScrollViewer Margin="0" VerticalScrollBarVisibility="Auto">
-                                    <TextBlock x:Name="TextBlock_ExperimentContent" Margin="0" TextWrapping="Wrap" FontFamily="Consolas">
-                                        Experiment Detail ...
-                                    </TextBlock>
-                                </ScrollViewer>
+                                <DataGrid x:Name="DataGrid_ExpDetail" Margin="0" FontSize="12" CanUserSortColumns="False"
+                                          IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="True"
+                                          materialDesign:DataGridAssist.CellPadding="10, 4, 5, 4"
+                                          materialDesign:DataGridAssist.ColumnHeaderPadding="10, 4, 5, 4"/>
                             </GroupBox>
 
                             <materialDesign:Chip Width="250" Grid.Row="2">
