@@ -16,7 +16,7 @@ namespace PICS
     {
         public const string ExperimentDataPath = "./ExperimentData.json";
         public PicsDataContext DCX;
-        public ExperimentManager ExpMananger;
+        public ExperimentManager ExpManager;
 
         private readonly CameraFacade Camera;
         private bool captureFlag = false;
@@ -25,7 +25,7 @@ namespace PICS
         public MainWindow()
         {
             DCX = new PicsDataContext();
-            ExpMananger = new ExperimentManager(ExperimentDataPath);
+            ExpManager = new ExperimentManager(ExperimentDataPath);
 
             InitializeComponent();
 
@@ -168,7 +168,7 @@ namespace PICS
             DCX.FolderTag = null;
             DCX.CamControlsEnabled = false;
             ClearUserInputs();
-            ExpMananger.ResetExperiment();
+            ExpManager.ResetExperiment();
             UpdateExperimentControls();
             CameraStopRoutine();
         }
@@ -202,21 +202,21 @@ namespace PICS
 
         private void UpdateExperimentDetail()
         {
-            DataGrid_ExpDetail.ItemsSource = ExpMananger.CurrentExperimentPVPList;
-            Label_ExpProgress.Content = ExpMananger.ProgressString;
-            ProgressBar_ExpProgress.Value = ExpMananger.ProgressValue;
-            Button_ExpLeft.IsEnabled = !ExpMananger.InFirstExperiment;
-            Button_ExpRight.IsEnabled = !ExpMananger.InLastExperiment;
+            DataGrid_ExpDetail.ItemsSource = ExpManager.CurrentExperimentPVPList;
+            Label_ExpProgress.Content = ExpManager.ProgressString;
+            ProgressBar_ExpProgress.Value = ExpManager.ProgressValue;
+            Button_ExpLeft.IsEnabled = !ExpManager.InFirstExperiment;
+            Button_ExpRight.IsEnabled = !ExpManager.InLastExperiment;
         }
 
         private void UpdateBadge()
         {
-            Badge_Iteration.Badge = ExpMananger.CurrentIterationCount;
+            Badge_Iteration.Badge = ExpManager.CurrentIterationCount;
         }
 
         private void UpdateCheckIcon()
         {
-            Icon_DoneCheck.Visibility = ExpMananger.IsCurrentOneDone ? Visibility.Visible : Visibility.Hidden;
+            Icon_DoneCheck.Visibility = ExpManager.IsCurrentOneDone ? Visibility.Visible : Visibility.Hidden;
         }
 
         private void UpdateExperimentControls()
@@ -237,13 +237,13 @@ namespace PICS
 
         private void PreviousExperimentRoutine()
         {
-            _ = ExpMananger.PreviousExperiment();
+            _ = ExpManager.PreviousExperiment();
             UpdateExperimentControls();
         }
 
         private void NextExperimentRoutine()
         {
-            _ = ExpMananger.NextExperiment();
+            _ = ExpManager.NextExperiment();
             UpdateExperimentControls();
         }
 
@@ -289,7 +289,7 @@ namespace PICS
             CameraCaptureRoutine();
             if (Camera.IsCapturing)
             {
-                bool completed = ExpMananger.CompleteSingleTrial();
+                bool completed = ExpManager.CompleteSingleTrial();
                 if (completed)
                 {
                     ShowPopupMessage("Thank you, the experiment is completed.");
@@ -306,10 +306,10 @@ namespace PICS
 
         private string GetFinalSavePath()
         {
-            string baseDir = ExpMananger.SaveDir;
+            string baseDir = ExpManager.SaveDir;
             string userDir = DCX.FolderTag;
             string cameraDir = ComboBox_Camera.SelectedItem.ToString();
-            string saveTag = $"{ExpMananger.CurrentExperimentSaveTag}_{ExpMananger.CurrentIterationCount}.png";
+            string saveTag = $"{ExpManager.CurrentExperimentSaveTag}_{ExpManager.CurrentIterationCount}.png";
             string finalDir = System.IO.Path.Combine(baseDir, userDir, cameraDir);
             PathUtility.CreateDirectoryIfDoesNotExist(finalDir);
             string finalPath = System.IO.Path.Combine(baseDir, userDir, cameraDir, saveTag);
