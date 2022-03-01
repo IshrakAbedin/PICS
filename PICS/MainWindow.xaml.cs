@@ -1,5 +1,6 @@
 ﻿using AForge.Video;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,7 +22,6 @@ namespace PICS
         private readonly CameraFacade Camera;
         private bool captureFlag = false;
         private string savePath = "";
-        private Task taskContainer;
 
         public MainWindow()
         {
@@ -54,17 +54,17 @@ namespace PICS
                 if (captureFlag)
                 {
                     captureFlag = false;
-                    taskContainer = Task.Run(() =>
-                      {
-                          try
-                          {
-                              bitmap.Save(savePath);
-                          }
-                          finally
-                          {
-                              bitmap.Dispose();
-                          }
-                      });
+                    _ = Task.Run(() =>
+                        {
+                            try
+                            {
+                                bitmap.Save(savePath);
+                            }
+                            finally
+                            {
+                                bitmap.Dispose();
+                            }
+                        });
                 }
                 else
                 {
@@ -97,7 +97,10 @@ namespace PICS
                     FlipCameraView();
                     break;
                 case Key.F9:
-                    SingleTrialRoutine();
+                    if(DCX.CamControlsEnabled)
+                    {
+                        SingleTrialRoutine();
+                    }
                     break;
                 case Key.F11:
                     PreviousExperimentRoutine();
@@ -118,6 +121,7 @@ namespace PICS
                 DCX.FolderTag = tag;
                 DCX.CamControlsEnabled = true;
             }
+            CameraStopRoutine();
         }
 
         private void Button_Clear_Click(object sender, RoutedEventArgs e)
@@ -171,7 +175,7 @@ namespace PICS
             ClearUserInputs();
             ExpManager.ResetExperiment();
             UpdateExperimentControls();
-            CameraStopRoutine();
+            // CameraStopRoutine();
         }
 
         private string GetSanitizedFolderTag()
@@ -250,7 +254,6 @@ namespace PICS
 
         private void CameraStopRoutine()
         {
-            taskContainer.Wait();
             UpdateCameraList();
             Camera.StopCapturing();
             CameraControl.Visibility = Visibility.Hidden;

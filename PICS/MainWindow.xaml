@@ -147,6 +147,7 @@
                         <DockPanel>
                             <ComboBox x:Name="ComboBox_Camera" materialDesign:HintAssist.Hint="Camera"
                                   Width="120" Margin="5,0" ItemsSource="{Binding CameraDevices}"
+                                  IsEnabled="{Binding CamControlsEnabled}"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             </ComboBox>
                             <Button
