@@ -21,6 +21,7 @@ namespace PICS
         private readonly CameraFacade Camera;
         private bool captureFlag = false;
         private string savePath = "";
+        private Task taskContainer;
 
         public MainWindow()
         {
@@ -53,7 +54,7 @@ namespace PICS
                 if (captureFlag)
                 {
                     captureFlag = false;
-                    _ = Task.Run(() =>
+                    taskContainer = Task.Run(() =>
                       {
                           try
                           {
@@ -249,6 +250,7 @@ namespace PICS
 
         private void CameraStopRoutine()
         {
+            taskContainer.Wait();
             UpdateCameraList();
             Camera.StopCapturing();
             CameraControl.Visibility = Visibility.Hidden;
