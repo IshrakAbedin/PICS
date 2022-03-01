@@ -21,6 +21,7 @@ namespace PICS
 
         private readonly CameraFacade Camera;
         private bool captureFlag = false;
+        private bool experimentRunning = true;
         private string savePath = "";
 
         public MainWindow()
@@ -297,6 +298,7 @@ namespace PICS
                 bool completed = ExpManager.CompleteSingleTrial();
                 if (completed)
                 {
+                    experimentRunning = false;
                     ShowPopupMessage("Thank you, the experiment is completed.");
                     ResetAll();
                 }
@@ -333,6 +335,15 @@ namespace PICS
                 "- F11: Previous Experiment\n" +
                 "- F12: Next Experiment";
             ShowPopupMessage(helpString);
+        }
+
+        private void DialogueHost_PopupLog_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
+        {
+            if(!experimentRunning)
+            {
+                CameraStopRoutine();
+                experimentRunning = true;
+            }
         }
     }
 }
